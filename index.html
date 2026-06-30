@@ -1,3 +1,291 @@
-<iframe id="g1" class="game-frame" src="tunnel-rush/" allow="fullscreen" allowfullscreen></iframe>
-<iframe id="g2" class="game-frame" src="slope/" allow="fullscreen" allowfullscreen></iframe>
-<iframe id="g3" class="game-frame" src="retro-bowl/" allow="fullscreen" allowfullscreen></iframe>
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X-GAMER PORTAL | Next-Gen v2.0</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #080a10;
+            color: #f5f6fa;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: linear-gradient(180deg, #121625 0%, #080a10 100%);
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 3px solid #00f2fe;
+            box-shadow: 0 5px 30px rgba(0, 242, 254, 0.15);
+        }
+
+        header h1 {
+            font-size: 3.2rem;
+            color: #00f2fe;
+            text-shadow: 0 0 15px rgba(0, 242, 254, 0.6), 0 0 30px rgba(7facff, 0.4);
+            letter-spacing: 4px;
+            font-weight: 800;
+        }
+
+        header p {
+            color: #7facff;
+            margin-top: 10px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .search-wrapper {
+            max-width: 550px;
+            margin: 30px auto 10px auto;
+            padding: 0 20px;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 14px 25px;
+            background-color: #121625;
+            border: 2px solid #232a45;
+            border-radius: 50px;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
+        }
+
+        .search-bar:focus {
+            border-color: #00f2fe;
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+        }
+
+        .main-layout {
+            display: flex;
+            max-width: 1450px;
+            margin: 30px auto;
+            padding: 0 20px;
+            gap: 30px;
+        }
+
+        .games-section {
+            flex: 3;
+        }
+
+        .sidebar-panel {
+            flex: 1;
+            background: #121625;
+            border: 2px solid #3b4260;
+            border-radius: 20px;
+            padding: 20px;
+            height: 700px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: #00f2fe;
+            margin: 25px 0 15px 0;
+            padding-left: 15px;
+            border-left: 4px solid #00f2fe;
+            text-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
+        }
+
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .game-card {
+            background: #121625;
+            border: 1px solid #232a45;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            border-color: #00f2fe;
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.25);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: #181f33;
+            border-bottom: 1px solid #232a45;
+        }
+
+        .game-name {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .btn-fullscreen {
+            background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+            color: #000;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: bold;
+            transition: opacity 0.2s;
+        }
+
+        .btn-fullscreen:hover {
+            opacity: 0.9;
+            box-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
+        }
+
+        .game-placeholder {
+            width: 100%;
+            height: 350px;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #57606f;
+            font-size: 0.9rem;
+            border: none;
+        }
+
+        .chat-header {
+            font-size: 1.2rem;
+            color: #7facff;
+            text-align: center;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #232a45;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .chat-area {
+            flex: 1;
+            background: #080a10;
+            border-radius: 10px;
+            border: none;
+        }
+
+        @media (max-width: 950px) {
+            .main-layout { flex-direction: column; }
+            .sidebar-panel { height: 400px; }
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #0c0f1a;
+            color: #57606f;
+            margin-top: 60px;
+            border-top: 1px solid #1a2035;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>⚡ X-GAMER PORTAL ⚡</h1>
+        <p>Limitsiz Əyləncə Platforması</p>
+    </header>
+
+    <div class="search-wrapper">
+        <input type="text" id="gameSearch" class="search-bar" placeholder="Oyun platformasında axtar..." onkeyup="filterGames()">
+    </div>
+
+    <div class="main-layout">
+        
+        <div class="games-section">
+            
+            <div class="section-block">
+                <div class="section-title">🔥 POPULYAR OYUNLAR</div>
+                <div class="game-grid">
+                    
+                    <div class="game-card">
+                        <div class="card-header">
+                            <span class="game-name">Tunnel Rush</span>
+                            <button class="btn-fullscreen" onclick="makeFullscreen('game1')">TAM EKRAN</button>
+                        </div>
+                        <iframe id="game1" class="game-placeholder" src="" allow="fullscreen" allowfullscreen></iframe>
+                    </div>
+
+                    <div class="game-card">
+                        <div class="card-header">
+                            <span class="game-name">Slope 3D</span>
+                            <button class="btn-fullscreen" onclick="makeFullscreen('game2')">TAM EKRAN</button>
+                        </div>
+                        <iframe id="game2" class="game-placeholder" src="" allow="fullscreen" allowfullscreen></iframe>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="sidebar-panel">
+            <div class="chat-header">💬 CANLI OYUNÇU ÇATI</div>
+            <iframe class="chat-area" src="https://www3.cbox.ws/box/?boxid=3534220&boxtag=g7m8x4" allow="autoplay"></iframe>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 X-GAMER PORTAL. Bütün hüquqlar qorunur.</p>
+    </footer>
+
+    <script>
+        function makeFullscreen(id) {
+            var frame = document.getElementById(id);
+            if (frame.requestFullscreen) { frame.requestFullscreen(); }
+            else if (frame.mozRequestFullScreen) { frame.mozRequestFullScreen(); }
+            else if (frame.webkitRequestFullscreen) { frame.webkitRequestFullscreen(); }
+            else if (frame.msRequestFullscreen) { frame.msRequestFullscreen(); }
+        }
+
+        function filterGames() {
+            var input = document.getElementById('gameSearch');
+            var filter = input.value.toUpperCase();
+            var blocks = document.getElementsByClassName('section-block');
+
+            for (var i = 0; i < blocks.length; i++) {
+                var cards = blocks[i].getElementsByClassName('game-card');
+                var hasVisibleCard = false;
+
+                for (var j = 0; j < cards.length; j++) {
+                    var nameSpan = cards[j].getElementsByClassName('game-name')[0];
+                    if (nameSpan) {
+                        var currentName = nameSpan.textContent || nameSpan.innerText;
+                        if (currentName.toUpperCase().indexOf(filter) > -1) {
+                            cards[j].style.display = "";
+                            hasVisibleCard = true;
+                        } else {
+                            cards[j].style.display = "none";
+                        }
+                    }
+                }
+
+                if (hasVisibleCard) {
+                    blocks[i].style.display = "";
+                } else {
+                    blocks[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
