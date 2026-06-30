@@ -198,15 +198,12 @@
         function handleCellClick(r, c, cellElement) {
             if (board[r][c] !== "" || !gameActive) return;
 
-            // 1. Cari oyunçu xananı tutur
             board[r][c] = currentPlayer;
             cellElement.innerText = currentPlayer;
             cellElement.className = "arena-cell " + (currentPlayer === 'X' ? 'player-x' : 'player-o');
 
-            // 2. Qonşuları hələ növbə dəyişmədən, cari oyunçunun hərfi ilə fəth edirik (XƏTA BURADA DÜZƏLDİ)
             captureNeighbors(r, c, currentPlayer);
 
-            // 3. İndi isə növbəni dəyişə bilərik
             currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
             updateStatusText();
             updateScores();
@@ -222,13 +219,11 @@
 
                 if (nr >= 0 && nr < GRID_SIZE && nc >= 0 && nc < GRID_SIZE) {
                     const target = board[nr][nc];
-                    // Əgər qonşu xana boş deyilsə və gediş edən oyunçunun deyil fərqlidirsə (rəqibdirsə)
                     if (target !== "" && target !== playerAtMove) {
-                        board[nr][nc] = playerAtMove; // Yaddaşda gediş edən oyunçunun adına keçir
+                        board[nr][nc] = playerAtMove;
                         
                         const targetCell = document.querySelector(`[data-row='${nr}'][data-col='${nc}']`);
                         if(targetCell) {
-                            // Vizual olaraq da birbaşa gediş edən oyunçunun rənginə və hərfinə boyayır
                             targetCell.className = "arena-cell " + (playerAtMove === 'X' ? 'player-x' : 'player-o');
                             targetCell.innerText = playerAtMove;
                         }
