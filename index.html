@@ -13,56 +13,54 @@
         }
 
         body {
-            background-color: #0e1118;
+            background-color: #0d1117;
             color: #fff;
         }
 
         header {
-            background-color: #161b26;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background-color: #161b22;
+            padding: 20px;
+            text-align: center;
             border-bottom: 2px solid #ff2e93;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
 
         header h1 {
             color: #ff2e93;
-            font-size: 1.8rem;
+            font-size: 2rem;
             letter-spacing: 1px;
         }
 
         header h1 span {
             color: #fff;
             background-color: #ff2e93;
-            padding: 2px 6px;
+            padding: 2px 8px;
             border-radius: 4px;
-            margin-left: 5px;
-            font-size: 1.2rem;
+            margin-left: 6px;
+            font-size: 1.3rem;
         }
 
         .main-container {
-            max-width: 1000px;
-            margin: 25px auto;
-            padding: 0 15px 50px 15px;
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 15px;
         }
 
-        .widget-wrapper {
-            background-color: #161b26;
-            border-radius: 8px;
+        .scores-card {
+            background-color: #161b22;
+            border-radius: 12px;
             overflow: hidden;
-            border: 1px solid #2c354a;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            min-height: 600px;
+            border: 1px solid #30363d;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
         }
 
         footer {
             text-align: center;
-            padding: 20px;
-            color: #637085;
+            padding: 25px;
+            color: #8b949e;
             font-size: 0.85rem;
-            border-top: 1px solid #161b26;
-            margin-top: 40px;
+            border-top: 1px solid #21262d;
+            margin-top: 50px;
         }
     </style>
 </head>
@@ -73,18 +71,18 @@
     </header>
 
     <div class="main-container">
-        <div class="widget-wrapper">
-            <!-- Dünyadakı bütün canlı oyunları avtomatik çəkən rəsmi təhlükəsiz widget -->
-            <iframe src="https://www.scoreaxis.com/widget/live-scores?autoHeight=1&bodyBackground=%23161b26&textColor=%23ffffff&font=Arial" 
-                    style="width: 100%; height: 800px; border: none; overflow: hidden;" 
-                    scrolling="yes" 
-                    allowtransparency="true">
+        <div class="scores-card">
+            <!-- Tam stabil, kənar saytlara yönləndirməyən və canlı yenilənən rəsmi widget -->
+            <iframe id="sofascore-embed"
+                    src="https://www.sofascore.com/football/livescore/embed"
+                    style="width: 100%; height: 850px; border: none; background-color: #161b22;"
+                    scrolling="yes">
             </iframe>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 X-SCORE. Bütün dünyadakı oyunlar tam doğru və anlıq olaraq yenilənir!</p>
+        <p>&copy; 2026 X-SCORE PORTAL. Bütün dünyadakı canlı qarşılaşmalar rəsmi qaynaqlarla anlıq yenilənir!</p>
     </footer>
 
 </body>
