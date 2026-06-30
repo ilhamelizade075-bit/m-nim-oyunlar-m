@@ -177,17 +177,8 @@
             board = Array(GRID_SIZE).fill(null).map(() => Array(GRID_SIZE).fill(""));
             gameActive = true;
 
-            // İlk gediş tamamən random təyin olunur (50% ehtimalla X və ya O)
             currentPlayer = Math.random() < 0.5 ? 'X' : 'O';
-            
-            const status = document.getElementById("status-text");
-            if (currentPlayer === 'X') {
-                status.innerText = "Növbə: Mavi (X) Oyunçusunda";
-                status.style.color = "#00d2ff";
-            } else {
-                status.innerText = "Növbə: Qırmızı (O) Oyunçusunda";
-                status.style.color = "#ff3838";
-            }
+            updateStatusText();
 
             for (let r = 0; r < GRID_SIZE; r++) {
                 for (let c = 0; c < GRID_SIZE; c++) {
@@ -205,31 +196,24 @@
         }
 
         function handleCellClick(r, c, cellElement) {
-            // Əgər xana doludursa və ya oyun bitibsə, klikləməni tamamilə blokla (X-O üst-üstə düşmə xətası düzəldi)
             if (board[r][c] !== "" || !gameActive) return;
 
+            // 1. Cari oyunçu xananı tutur
             board[r][c] = currentPlayer;
             cellElement.innerText = currentPlayer;
-            cellElement.classList.add(currentPlayer === 'X' ? 'player-x' : 'player-o');
+            cellElement.className = "arena-cell " + (currentPlayer === 'X' ? 'player-x' : 'player-o');
 
-            captureNeighbors(r, c);
+            // 2. Qonşuları hələ növbə dəyişmədən, cari oyunçunun hərfi ilə fəth edirik (XƏTA BURADA DÜZƏLDİ)
+            captureNeighbors(r, c, currentPlayer);
 
-            // Növbə mexanizmi
+            // 3. İndi isə növbəni dəyişə bilərik
             currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-            const status = document.getElementById("status-text");
-            if (currentPlayer === 'X') {
-                status.innerText = "Növbə: Mavi (X) Oyunçusunda";
-                status.style.color = "#00d2ff";
-            } else {
-                status.innerText = "Növbə: Qırmızı (O) Oyunçusunda";
-                status.style.color = "#ff3838";
-            }
-
+            updateStatusText();
             updateScores();
             checkGameOver();
         }
 
-        function captureNeighbors(r, c) {
+        function captureNeighbors(r, c, playerAtMove) {
             const directions = [[-1, 0], [1, 0], [0, -1], [0, 1]];
 
             directions.forEach(([dr, dc]) => {
@@ -238,18 +222,30 @@
 
                 if (nr >= 0 && nr < GRID_SIZE && nc >= 0 && nc < GRID_SIZE) {
                     const target = board[nr][nc];
-                    if (target !== "" && target !== currentPlayer) {
-                        board[nr][nc] = currentPlayer;
-                        setTimeout(() => {
-                            const targetCell = document.querySelector(`[data-row='${nr}'][data-col='${nc}']`);
-                            if(targetCell) {
-                                targetCell.className = "arena-cell " + (currentPlayer === 'X' ? 'player-x' : 'player-o');
-                                targetCell.innerText = currentPlayer;
-                            }
-                        }, 50);
+                    // Əgər qonşu xana boş deyilsə və gediş edən oyunçunun deyil fərqlidirsə (rəqibdirsə)
+                    if (target !== "" && target !== playerAtMove) {
+                        board[nr][nc] = playerAtMove; // Yaddaşda gediş edən oyunçunun adına keçir
+                        
+                        const targetCell = document.querySelector(`[data-row='${nr}'][data-col='${nc}']`);
+                        if(targetCell) {
+                            // Vizual olaraq da birbaşa gediş edən oyunçunun rənginə və hərfinə boyayır
+                            targetCell.className = "arena-cell " + (playerAtMove === 'X' ? 'player-x' : 'player-o');
+                            targetCell.innerText = playerAtMove;
+                        }
                     }
                 }
             });
+        }
+
+        function updateStatusText() {
+            const status = document.getElementById("status-text");
+            if (currentPlayer === 'X') {
+                status.innerText = "Növbə: Mavi (X) Oyunçusunda";
+                status.style.color = "#00d2ff";
+            } else {
+                status.innerText = "Növbə: Qırmızı (O) Oyunçusunda";
+                status.style.color = "#ff3838";
+            }
         }
 
         function updateScores() {
