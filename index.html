@@ -64,7 +64,6 @@
             transition: color 0.3s ease;
         }
 
-        /* 3x3 Ölçülü Yeni Arena */
         .arena-grid {
             display: grid;
             grid-template-columns: repeat(3, 100px);
@@ -152,19 +151,19 @@
     </header>
 
     <div class="game-description">
-        <strong>💡 Qaydalar:</strong> Boş xanalara klikləyərək ərazini fəth et və üzərində <strong>X-O</strong> yazılsın. Qonşu xanada rəqib varsa, onun ərazisini fəth edib öz hərfinə çevirəcəksən!
+        <strong>💡 Qaydalar:</strong> Bütün xanalar tam boş başlayır və ilk gediş random seçilir. Kliklənmiş xananın üzərinə yenidən basmaq olmaz! Qonşu xanadakı rəqibləri fəth edib öz hərfinizə çevirin!
     </div>
 
     <div class="scoreboard">
-        <div class="score-x">Mavi (X): <span id="scoreX">1</span></div>
-        <div class="score-o">Qırmızı (O): <span id="scoreO">1</span></div>
+        <div class="score-x">Mavi (X): <span id="scoreX">0</span></div>
+        <div class="score-o">Qırmızı (O): <span id="scoreO">0</span></div>
     </div>
 
-    <div id="status-text">Növbə: Mavi (X) Oyunçusunda</div>
+    <div id="status-text">Oyun Başlayır...</div>
 
     <div class="arena-grid" id="arenaGrid"></div>
 
-    <button class="reset-btn" onclick="initGame()">Arenanı Yenilə</button>
+    <button class="reset-btn" onclick="initGame()">Oyunu Yenidən Başlat</button>
 
     <script>
         const GRID_SIZE = 3;
@@ -177,12 +176,18 @@
             gridElement.innerHTML = "";
             board = Array(GRID_SIZE).fill(null).map(() => Array(GRID_SIZE).fill(""));
             gameActive = true;
-            currentPlayer = 'X';
-            document.getElementById("status-text").innerText = "Növbə: Mavi (X) Oyunçusunda";
-            document.getElementById("status-text").style.color = "#00d2ff";
 
-            board[0][0] = 'X';
-            board[GRID_SIZE-1][GRID_SIZE-1] = 'O';
+            // İlk gediş tamamən random təyin olunur (50% ehtimalla X və ya O)
+            currentPlayer = Math.random() < 0.5 ? 'X' : 'O';
+            
+            const status = document.getElementById("status-text");
+            if (currentPlayer === 'X') {
+                status.innerText = "Növbə: Mavi (X) Oyunçusunda";
+                status.style.color = "#00d2ff";
+            } else {
+                status.innerText = "Növbə: Qırmızı (O) Oyunçusunda";
+                status.style.color = "#ff3838";
+            }
 
             for (let r = 0; r < GRID_SIZE; r++) {
                 for (let c = 0; c < GRID_SIZE; c++) {
@@ -190,15 +195,7 @@
                     cell.classList.add("arena-cell");
                     cell.dataset.row = r;
                     cell.dataset.col = c;
-                    
-                    if (r === 0 && c === 0) {
-                        cell.classList.add("player-x");
-                        cell.innerText = "X";
-                    }
-                    if (r === GRID_SIZE-1 && c === GRID_SIZE-1) {
-                        cell.classList.add("player-o");
-                        cell.innerText = "O";
-                    }
+                    cell.innerText = "";
                     
                     cell.addEventListener("click", () => handleCellClick(r, c, cell));
                     gridElement.appendChild(cell);
@@ -208,6 +205,7 @@
         }
 
         function handleCellClick(r, c, cellElement) {
+            // Əgər xana doludursa və ya oyun bitibsə, klikləməni tamamilə blokla (X-O üst-üstə düşmə xətası düzəldi)
             if (board[r][c] !== "" || !gameActive) return;
 
             board[r][c] = currentPlayer;
@@ -216,6 +214,7 @@
 
             captureNeighbors(r, c);
 
+            // Növbə mexanizmi
             currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
             const status = document.getElementById("status-text");
             if (currentPlayer === 'X') {
