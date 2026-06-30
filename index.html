@@ -3,283 +3,262 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>X-GAMER PORTAL | Next-Gen v2.0</title>
+    <title>X-SCORE | Canlı Futbol Nəticələri</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: Arial, sans-serif;
         }
 
         body {
-            background-color: #080a10;
-            color: #f5f6fa;
-            overflow-x: hidden;
+            background-color: #0e1118;
+            color: #fff;
         }
 
         header {
-            background: linear-gradient(180deg, #121625 0%, #080a10 100%);
-            padding: 40px 20px;
-            text-align: center;
-            border-bottom: 3px solid #00f2fe;
-            box-shadow: 0 5px 30px rgba(0, 242, 254, 0.15);
-        }
-
-        header h1 {
-            font-size: 3.2rem;
-            color: #00f2fe;
-            text-shadow: 0 0 15px rgba(0, 242, 254, 0.6), 0 0 30px rgba(7facff, 0.4);
-            letter-spacing: 4px;
-            font-weight: 800;
-        }
-
-        header p {
-            color: #7facff;
-            margin-top: 10px;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .search-wrapper {
-            max-width: 550px;
-            margin: 30px auto 10px auto;
-            padding: 0 20px;
-        }
-
-        .search-bar {
-            width: 100%;
-            padding: 14px 25px;
-            background-color: #121625;
-            border: 2px solid #232a45;
-            border-radius: 50px;
-            color: #fff;
-            font-size: 1rem;
-            outline: none;
-            transition: all 0.3s ease;
-            box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
-        }
-
-        .search-bar:focus {
-            border-color: #00f2fe;
-            box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
-        }
-
-        .main-layout {
-            display: flex;
-            max-width: 1450px;
-            margin: 30px auto;
-            padding: 0 20px;
-            gap: 30px;
-        }
-
-        .games-section {
-            flex: 3;
-        }
-
-        .sidebar-panel {
-            flex: 1;
-            background: #121625;
-            border: 2px solid #3b4260;
-            border-radius: 20px;
-            padding: 20px;
-            height: 700px;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-        }
-
-        .section-title {
-            font-size: 1.5rem;
-            color: #00f2fe;
-            margin: 25px 0 15px 0;
-            padding-left: 15px;
-            border-left: 4px solid #00f2fe;
-            text-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
-        }
-
-        .game-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
-        .game-card {
-            background: #121625;
-            border: 1px solid #232a45;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.6);
-            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .game-card:hover {
-            transform: translateY(-5px);
-            border-color: #00f2fe;
-            box-shadow: 0 0 20px rgba(0, 242, 254, 0.25);
-        }
-
-        .card-header {
+            background-color: #161b26;
+            padding: 15px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px;
-            background: #181f33;
-            border-bottom: 1px solid #232a45;
+            border-bottom: 2px solid #ff2e93;
         }
 
-        .game-name {
+        header h1 {
+            color: #ff2e93;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+        }
+
+        header h1 span {
+            color: #fff;
+            background-color: #ff2e93;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-left: 5px;
+            font-size: 1.2rem;
+        }
+
+        .search-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 12px 20px;
+            background-color: #161b26;
+            border: 1px solid #2c354a;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .search-box:focus {
+            border-color: #ff2e93;
+        }
+
+        .main-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 15px 50px 15px;
+        }
+
+        .league-block {
+            background-color: #161b26;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            border: 1px solid #2c354a;
+        }
+
+        .league-header {
+            background-color: #1f2637;
+            padding: 12px 15px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            color: #00ffcc;
+            border-bottom: 1px solid #2c354a;
+        }
+
+        .match-card {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #2c354a;
+            transition: background 0.2s;
+        }
+
+        .match-card:last-child {
+            border-bottom: none;
+        }
+
+        .match-card:hover {
+            background-color: #1f2637;
+        }
+
+        .match-status {
+            width: 60px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: #ff2e93;
+            text-align: center;
+        }
+
+        .match-status.finished {
+            color: #8a96a3;
+        }
+
+        .teams-area {
+            flex: 1;
+            padding-left: 15px;
+        }
+
+        .team-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 4px 0;
             font-size: 1.05rem;
-            font-weight: 600;
+        }
+
+        .team-name {
             color: #fff;
         }
 
-        .btn-fullscreen {
-            background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
-            color: #000;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.8rem;
+        .team-score {
             font-weight: bold;
-            transition: opacity 0.2s;
-        }
-
-        .btn-fullscreen:hover {
-            opacity: 0.9;
-            box-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
-        }
-
-        .game-placeholder {
-            width: 100%;
-            height: 350px;
-            background: #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #57606f;
-            font-size: 0.9rem;
-            border: none;
-        }
-
-        .chat-header {
-            font-size: 1.2rem;
-            color: #7facff;
+            font-size: 1.1rem;
+            color: #fff;
+            width: 30px;
             text-align: center;
-            padding-bottom: 12px;
-            border-bottom: 2px solid #232a45;
-            margin-bottom: 15px;
-            font-weight: 600;
         }
 
-        .chat-area {
-            flex: 1;
-            background: #080a10;
-            border-radius: 10px;
-            border: none;
-        }
-
-        @media (max-width: 950px) {
-            .main-layout { flex-direction: column; }
-            .sidebar-panel { height: 400px; }
+        .match-card:hover .team-name {
+            color: #00ffcc;
         }
 
         footer {
             text-align: center;
-            padding: 30px;
-            background: #0c0f1a;
-            color: #57606f;
-            margin-top: 60px;
-            border-top: 1px solid #1a2035;
-            font-size: 0.9rem;
+            padding: 20px;
+            color: #637085;
+            font-size: 0.85rem;
+            border-top: 1px solid #161b26;
+            margin-top: 40px;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>⚡ X-GAMER PORTAL ⚡</h1>
-        <p>Limitsiz Əyləncə Platforması</p>
+        <h1>X-SCORE<span>LIVE</span></h1>
     </header>
 
-    <div class="search-wrapper">
-        <input type="text" id="gameSearch" class="search-bar" placeholder="Oyun platformasında axtar..." onkeyup="filterGames()">
+    <div class="search-container">
+        <input type="text" id="teamSearch" class="search-box" placeholder="Komanda adı axtar..." onkeyup="searchTeams()">
     </div>
 
-    <div class="main-layout">
-        
-        <div class="games-section">
+    <div class="main-container">
+
+        <div class="league-block">
+            <div class="league-header">🏆 ÇEMPİONLAR LİQASI</div>
             
-            <div class="section-block">
-                <div class="section-title">🔥 POPULYAR OYUNLAR</div>
-                <div class="game-grid">
-                    
-                    <div class="game-card">
-                        <div class="card-header">
-                            <span class="game-name">Tunnel Rush</span>
-                            <button class="btn-fullscreen" onclick="makeFullscreen('game1')">TAM EKRAN</button>
-                        </div>
-                        <iframe id="game1" class="game-placeholder" src="tunnel-rush/" allow="fullscreen" allowfullscreen></iframe>
+            <div class="match-card">
+                <div class="match-status">72'</div>
+                <div class="teams-area">
+                    <div class="team-row">
+                        <span class="team-name">Real Madrid</span>
+                        <span class="team-score">2</span>
                     </div>
-
-                    <div class="game-card">
-                        <div class="card-header">
-                            <span class="game-name">Slope 3D</span>
-                            <button class="btn-fullscreen" onclick="makeFullscreen('game2')">TAM EKRAN</button>
-                        </div>
-                        <iframe id="game2" class="game-placeholder" src="slope/" allow="fullscreen" allowfullscreen></iframe>
+                    <div class="team-row">
+                        <span class="team-name">Manchester City</span>
+                        <span class="team-score">1</span>
                     </div>
-
                 </div>
             </div>
 
+            <div class="match-card">
+                <div class="match-status finished">FT</div>
+                <div class="teams-area">
+                    <div class="team-row">
+                        <span class="team-name">Barcelona</span>
+                        <span class="team-score">3</span>
+                    </div>
+                    <div class="team-row">
+                        <span class="team-name">Bayern Munich</span>
+                        <span class="team-score">0</span>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="sidebar-panel">
-            <div class="chat-header">💬 CANLI OYUNÇU ÇATI</div>
-            <iframe class="chat-area" src="https://mınnıtchat.com" allow="autoplay"></iframe>
+        <div class="league-block">
+            <div class="league-header">🏴󠁧󠁢󠁥󠁮󠁧󠁿 İNGİLTƏRƏ PREMYER LİQASI</div>
+            
+            <div class="match-card">
+                <div class="match-status">15'</div>
+                <div class="teams-area">
+                    <div class="team-row">
+                        <span class="team-name">Arsenal</span>
+                        <span class="team-score">0</span>
+                    </div>
+                    <div class="team-row">
+                        <span class="team-name">Chelsea</span>
+                        <span class="team-score">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="match-card">
+                <div class="match-status finished">FT</div>
+                <div class="teams-area">
+                    <div class="team-row">
+                        <span class="team-name">Liverpool</span>
+                        <span class="team-score">4</span>
+                    </div>
+                    <div class="team-row">
+                        <span class="team-name">Manchester United</span>
+                        <span class="team-score">2</span>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
 
     <footer>
-        <p>&copy; 2026 X-GAMER PORTAL. Bütün hüquqlar qorunur.</p>
+        <p>&copy; 2026 X-SCORE. Bütün idman nəticələri anlıq burada!</p>
     </footer>
 
     <script>
-        function makeFullscreen(id) {
-            var frame = document.getElementById(id);
-            if (frame.requestFullscreen) { frame.requestFullscreen(); }
-            else if (frame.mozRequestFullScreen) { frame.mozRequestFullScreen(); }
-            else if (frame.webkitRequestFullscreen) { frame.webkitRequestFullscreen(); }
-            else if (frame.msRequestFullscreen) { frame.msRequestFullscreen(); }
-        }
-
-        function filterGames() {
-            var input = document.getElementById('gameSearch');
+        function searchTeams() {
+            var input = document.getElementById('teamSearch');
             var filter = input.value.toUpperCase();
-            var blocks = document.getElementsByClassName('section-block');
+            var cards = document.getElementsByClassName('match-card');
+            var blocks = document.getElementsByClassName('league-block');
 
             for (var i = 0; i < blocks.length; i++) {
-                var cards = blocks[i].getElementsByClassName('game-card');
-                var hasVisibleCard = false;
+                var currentCards = blocks[i].getElementsByClassName('match-card');
+                var hasMatch = false;
 
-                for (var j = 0; j < cards.length; j++) {
-                    var nameSpan = cards[j].getElementsByClassName('game-name')[0];
-                    if (nameSpan) {
-                        var currentName = nameSpan.textContent || nameSpan.innerText;
-                        if (currentName.toUpperCase().indexOf(filter) > -1) {
-                            cards[j].style.display = "";
-                            hasVisibleCard = true;
-                        } else {
-                            cards[j].style.display = "none";
-                        }
+                for (var j = 0; j < currentCards.length; j++) {
+                    var names = currentCards[j].getElementsByClassName('team-name');
+                    var team1 = names[0].textContent || names[0].innerText;
+                    var team2 = names[1].textContent || names[1].innerText;
+
+                    if (team1.toUpperCase().indexOf(filter) > -1 || team2.toUpperCase().indexOf(filter) > -1) {
+                        currentCards[j].style.display = "";
+                        hasMatch = true;
+                    } else {
+                        currentCards[j].style.display = "none";
                     }
                 }
 
-                if (hasVisibleCard) {
+                if (hasMatch) {
                     blocks[i].style.display = "";
                 } else {
                     blocks[i].style.display = "none";
