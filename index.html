@@ -3,52 +3,362 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oyun Dünyası</title>
-    <link rel="stylesheet" href="style.css">
+    <title>X-GAMER PORTAL | Pro Edition</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #05060b;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: linear-gradient(180deg, #0f111a 0%, #05060b 100%);
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: 3px solid #00ffcc;
+            box-shadow: 0 0 25px rgba(0, 255, 204, 0.2);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            color: #00ffcc;
+            text-shadow: 0 0 10px #00ffcc, 0 0 20px #ff007f;
+            letter-spacing: 3px;
+        }
+
+        header p {
+            color: #8a90af;
+            margin-top: 8px;
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 25px auto 5px auto;
+            padding: 0 20px;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 12px 20px;
+            background-color: #111424;
+            border: 2px solid #222741;
+            border-radius: 30px;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .search-box:focus {
+            border-color: #00ffcc;
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.3);
+        }
+
+        .main-wrapper {
+            display: flex;
+            max-width: 1500px;
+            margin: 20px auto;
+            padding: 0 20px;
+            gap: 25px;
+        }
+
+        .content-area {
+            flex: 3;
+        }
+
+        .sidebar-chat {
+            flex: 1;
+            background: #111424;
+            border: 2px solid #ff007f;
+            border-radius: 16px;
+            padding: 15px;
+            height: 750px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 15px rgba(255, 0, 127, 0.1);
+        }
+
+        .chat-title {
+            font-size: 1.3rem;
+            color: #ff007f;
+            text-shadow: 0 0 5px #ff007f;
+            margin-bottom: 12px;
+            text-align: center;
+            border-bottom: 1px solid #222741;
+            padding-bottom: 8px;
+        }
+
+        .chat-box {
+            flex: 1;
+            width: 100%;
+            border: none;
+            border-radius: 8px;
+            background: #05060b;
+        }
+
+        .gamer-ranks {
+            margin-top: 15px;
+            background: #16192b;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            border-left: 4px solid #00ffcc;
+        }
+
+        .gamer-ranks h4 { color: #00ffcc; margin-bottom: 5px; }
+        .gamer-ranks ul { list-style: none; }
+        .gamer-ranks li { margin: 4px 0; color: #ccc; }
+
+        .category-title {
+            font-size: 1.6rem;
+            color: #00ffcc;
+            margin: 35px 0 20px 0;
+            border-left: 5px solid #00ffcc;
+            padding-left: 12px;
+            text-shadow: 0 0 10px rgba(0, 255, 204, 0.2);
+        }
+
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .game-card {
+            background: #111424;
+            border: 1px solid #222741;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            border-color: #ff007f;
+            box-shadow: 0 0 15px rgba(255, 0, 127, 0.2);
+        }
+
+        .game-title-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: #16192b;
+        }
+
+        .game-title {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #fff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 180px;
+        }
+
+        .fullscreen-btn {
+            background: #00ffcc;
+            color: #000;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .fullscreen-btn:hover {
+            background: #ff007f;
+            color: #fff;
+            box-shadow: 0 0 10px #ff007f;
+        }
+
+        .game-frame {
+            width: 100%;
+            height: 380px;
+            border: none;
+            background: #000;
+        }
+
+        @media (max-width: 950px) {
+            .main-wrapper { flex-direction: column; }
+            .sidebar-chat { height: 450px; order: -1; }
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: #05060b;
+            color: #4e5473;
+            border-top: 1px solid #111424;
+            margin-top: 50px;
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">GAMER<span>ZONE</span></div>
-        <nav>
-            <ul>
-                <li><a href="#home">Ana Səhifə</a></li>
-                <li><a href="#about">Oyun Haqqında</a></li>
-                <li><a href="#streams">Yayımlar</a></li>
-                <li><a href="#contact">Əlaqə</a></li>
-            </ul>
-        </nav>
+        <h1>⚡ X-GAMER PORTAL ⚡</h1>
+        <p>Yüzlərlə Hazır Oyun Platforması</p>
     </header>
 
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Macəraya Hazırsan?</h1>
-            <p>Ən son oyun xəbərləri, taktikalar və canlı yayımlar burada.</p>
-            <a href="#about" class="btn">Daha Çox</a>
-        </div>
-    </section>
+    <div class="search-container">
+        <input type="text" id="searchGame" class="search-box" placeholder="Oyun adı axtar..." onkeyup="searchFunction()">
+    </div>
 
-    <section id="about" class="about-section">
-        <h2>Oyun Haqqında</h2>
-        <div class="cards-container">
-            <div class="card">
-                <h3>Craft & Tikinti</h3>
-                <p>Resursları topla, alətlərini təkmilləşdir və öz dünyanı sıfırdan inşa et.</p>
+    <div class="main-wrapper">
+        
+        <div class="content-area">
+            
+            <div class="category-title">🔥 POPULYAR OYUNLAR</div>
+            <div class="game-grid">
+                
+                <div class="game-card">
+                    <div class="game-title-bar">
+                        <span class="game-title">Combat Online (3D FPS)</span>
+                        <button class="fullscreen-btn" onclick="goFullscreen('g1')">TAM EKRAN</button>
+                    </div>
+                    <iframe id="g1" class="game-frame" src="https://html5.gamedistribution.com/a42b918a992643a681bc7e13200921cf/"></iframe>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-title-bar">
+                        <span class="game-title">Cyber Cars Punk Racing</span>
+                        <button class="fullscreen-btn" onclick="goFullscreen('g2')">TAM EKRAN</button>
+                    </div>
+                    <iframe id="g2" class="game-frame" src="https://html5.gamedistribution.com/830e2f5b61194fdca2ec6fa34d284f1b/"></iframe>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-title-bar">
+                        <span class="game-title">Moto X3M Pool Party</span>
+                        <button class="fullscreen-btn" onclick="goFullscreen('g3')">TAM EKRAN</button>
+                    </div>
+                    <iframe id="g3" class="game-frame" src="https://html5.gamedistribution.com/c600da7992454a6db2492f3d64841961/"></iframe>
+                </div>
+
             </div>
-            <div class="card">
-                <h3>Canlı Yayımlar</h3>
-                <p>Yüksək keyfiyyətli strimlər, oyun turları və maraqlı anlar tezliklə platformada.</p>
+
+            <div class="category-title">🧱 STRATEGİYA VƏ BLOK</div>
+            <div class="game-grid">
+
+                <div class="game-card">
+                    <div class="game-title-bar">
+                        <span class="game-title">Craft Land (Minecraft 3D)</span>
+                        <button class="fullscreen-btn" onclick="goFullscreen('g4')">TAM EKRAN</button>
+                    </div>
+                    <iframe id="g4" class="game-frame" src="https://html5.gamedistribution.com/4e451b68a8344e27acda49bfb6727282/"></iframe>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-title-bar">
+                        <span class="game-title">Wood Block Puzzle</span>
+                        <button class="fullscreen-btn" onclick="goFullscreen('g5')">TAM EKRAN</button>
+                    </div>
+                    <iframe id="g5" class="game-frame" src="https://html5.gamedistribution.com/7b3260847936496695fb19e1b212f455/"></iframe>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-title-bar">
+                        <span class="game-title">Pixel Clash 3D</span>
+                        <button class="fullscreen-btn" onclick="goFullscreen('g6')">TAM EKRAN</button>
+                    </div>
+                    <iframe id="g6" class="game-frame" src="https://html5.gamedistribution.com/4da250499d1045dbb5c21bb0b797dbfb/"></iframe>
+                </div>
+
             </div>
-            <div class="card">
-                <h3>Server Qaydaları</h3>
-                <p>Dostlarınla birlikdə təhlükəsiz və ədalətli bir mühitdə oynamaq üçün qaydalara göz at.</p>
+
+            <div class="category-title">🎯 ATARKADA VƏ ACTION</div>
+            <div class="game-grid">
+
+                <div class="game-card">
+                    <div class="game-title-bar">
+                        <span class="game-title">Subway Surfers (Pro)</span>
+                        <button class="fullscreen-btn" onclick="goFullscreen('g7')">TAM EKRAN</button>
+                    </div>
+                    <iframe id="g7" class="game-frame" src="https://html5.gamedistribution.com/629087edbc2a4ef694fe6f2f281cb965/"></iframe>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-title-bar">
+                        <span class="game-title">Stickman Hook</span>
+                        <button class="fullscreen-btn" onclick="goFullscreen('g8')">TAM EKRAN</button>
+                    </div>
+                    <iframe id="g8" class="game-frame" src="https://html5.gamedistribution.com/393bc67d5bdc416f9f6880fc28522784/"></iframe>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-title-bar">
+                        <span class="game-title">Vex 4 (Platform)</span>
+                        <button class="fullscreen-btn" onclick="goFullscreen('g9')">TAM EKRAN</button>
+                    </div>
+                    <iframe id="g9" class="game-frame" src="https://html5.gamedistribution.com/83232cd3e0cd4d678b84922ca01548e6/"></iframe>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="sidebar-chat">
+            <div class="chat-title">💬 Canlı Oyunçu Çatı</div>
+            <iframe class="chat-box" src="https://www3.cbox.ws/box/?boxid=3534220&boxtag=g7m8x4" allow="autoplay"></iframe>
+            
+            <div class="gamer-ranks">
+                <h4>🏆 Geymer Rütbələri:</h4>
+                <ul>
+                    <li>🥈 0-50 xal: <span style="color: #ad7803;">Bürünc Oyunçu</span></li>
+                    <li>🥇 50-200 xal: <span style="color: #d1d1d1;">Gümüş Geymer</span></li>
+                    <li>💎 200+ xal: <span style="color: #00ffcc;">Eldar Pro Legend</span></li>
+                </ul>
             </div>
         </div>
-    </section>
+
+    </div>
 
     <footer>
-        <p>&copy; 2026 GamerZone. Bütün hüquqlar qorunur.</p>
+        <p>&copy; 2026 X-GAMER PORTAL. Hər cihazda limitsiz əyləncə!</p>
     </footer>
+
+    <script>
+        function goFullscreen(id) {
+            var element = document.getElementById(id);
+            if (element.requestFullscreen) { element.requestFullscreen(); } 
+            else if (element.mozRequestFullScreen) { element.mozRequestFullScreen(); } 
+            else if (element.webkitRequestFullscreen) { element.webkitRequestFullscreen(); } 
+            else if (element.msRequestFullscreen) { element.msRequestFullscreen(); }
+        }
+
+        document.cookie = "cookie_name=cookie_value; SameSite=None; Secure";
+
+        function searchFunction() {
+            var input, filter, grid, cards, title, i, txtValue;
+            input = document.getElementById('searchGame');
+            filter = input.value.toUpperCase();
+            cards = document.getElementsByClassName('game-card');
+
+            for (i = 0; i < cards.length; i++) {
+                title = cards[i].getElementsByClassName('game-title')[0];
+                if (title) {
+                    txtValue = title.textContent || title.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        cards[i].style.display = "";
+                    } else {
+                        cards[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
 
 </body>
 </html>
