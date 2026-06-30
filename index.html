@@ -4,13 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>X-MODS | Minecraft Mod Launcher</title>
-    
-    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/606/606547.png">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="#111216">
-    <meta name="apple-mobile-web-app-title" content="X-MODS">
     <meta name="theme-color" content="#00af5c">
-
     <style>
         * {
             margin: 0;
@@ -218,41 +212,41 @@
             
             <div class="mod-card">
                 <div class="mod-info">
-                    <h3>X-Launcher Client</h3>
+                    <h3>Fabric Installer</h3>
                     <span class="mod-tag">TƏTBİQ / LAUNCHER</span>
-                    <p class="mod-desc">Modları avtomatik quraşdıran, FPS optimizasiyası olan xüsusi hazırlanmış Minecraft proqramı.</p>
+                    <p class="mod-desc">Müasir Minecraft modlarını rahat və sürətli şəkildə quraşdırmaq üçün rəsmi mod yükləyicisi.</p>
                 </div>
-                <a href="#" class="btn-download-mod" onclick="alert('Tezliklə yükləmə aktiv olacaq!')">Launcher Yüklə (.exe)</a>
+                <a href="https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.0.1/fabric-installer-1.0.1.exe" class="btn-download-mod">Launcher Yüklə (.exe)</a>
             </div>
 
             <div class="mod-card">
                 <div class="mod-info">
-                    <h3>Ultra FPS Booster</h3>
+                    <h3>OptiFine HD</h3>
                     <span class="mod-tag">MOD PAKETİ</span>
-                    <p class="mod-desc">Zəif kompüterlər üçün daxili kodları yeniləyərək FPS göstəricisini maksimuma çıxaran paket.</p>
+                    <p class="mod-desc">Oyundakı bütün qrafik kodları yeniləyərək FPS göstəricisini maksimuma çıxaran rəsmi paket.</p>
                 </div>
-                <a href="#" class="btn-download-mod" onclick="alert('Tezliklə yükləmə aktiv olacaq!')">Modu Yüklə (.jar)</a>
+                <a href="https://optifine.net/downloads" target="_blank" class="btn-download-mod">Modu Yüklə (.jar)</a>
             </div>
 
             <div class="mod-card">
                 <div class="mod-info">
-                    <h3>CyberCraft Graphics</h3>
+                    <h3>Iris Shaders</h3>
                     <span class="mod-tag">SHADER / MOD</span>
                     <p class="mod-desc">Oyuna möhtəşəm işıqlandırmalar, HDR rənglər və real kölgələr əlavə edən qrafika yeniləməsi.</p>
                 </div>
-                <a href="#" class="btn-download-mod" onclick="alert('Tezliklə yükləmə aktiv olacaq!')">Paketi Yüklə (.zip)</a>
+                <a href="https://www.curseforge.com/minecraft/mc-mods/irisshaders" target="_blank" class="btn-download-mod">Paketi Yüklə (.zip)</a>
             </div>
 
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 X-MODS. Modrinth tərzində müasir platforma.</p>
+        <p>&copy; 2026 X-MODS. Bütün yükləmələr rəsmi və aktivdir.</p>
     </footer>
 
     <script>
         function triggerNativeInstall() {
-            alert("Saytı kompüterə yükləmək üçün Chrome brauzerinin sağ üst küncündəki (link yerinin sağındakı) 'Yüklə' (Install) ikonasına klikləyin!");
+            alert("Saytın özünü kompüterə ayrıca bir proqram kimi yükləmək üçün Google Chrome brauzerinin tam sağ üst küncündəki (link yerinin sağında yerləşən) monitor və ox işarəsinə klikləyin!");
         }
 
         function searchMods() {
@@ -265,7 +259,7 @@
                 if (h3) {
                     var txtValue = h3.textContent || h3.innerText;
                     if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        cards[j].style.display = "";
+                        cards[i].style.display = "";
                     } else {
                         cards[i].style.display = "none";
                     }
