@@ -3,7 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>X-MODS | Minecraft Mod Launcher & Platform</title>
+    <title>X-MODS | Minecraft Mod Launcher</title>
+    
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/606/606547.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#111216">
+    <meta name="apple-mobile-web-app-title" content="X-MODS">
+    <meta name="theme-color" content="#00af5c">
+
     <style>
         * {
             margin: 0;
@@ -51,7 +58,6 @@
             border-radius: 6px;
             font-weight: bold;
             cursor: pointer;
-            display: none;
             box-shadow: 0 4px 15px rgba(0, 175, 92, 0.3);
             transition: transform 0.2s;
         }
@@ -184,7 +190,7 @@
             padding: 30px;
             background-color: #18191e;
             color: #626575;
-            margin-top: 8px;
+            margin-top: 60px;
             font-size: 0.9rem;
             border-top: 1px solid #2f313d;
         }
@@ -194,8 +200,7 @@
 
     <header>
         <h1>X-MODS<span>PRO</span></h1>
-        <!-- Proqram yükləmə düyməsi (Sistem uyğun olduqda avtomatik görünəcək) -->
-        <button id="installBtn" class="btn-install-app">PROQRAMI YÜKLƏ</button>
+        <button id="installBtn" class="btn-install-app" onclick="triggerNativeInstall()">PROQRAMI YÜKLƏ</button>
     </header>
 
     <div class="hero-section">
@@ -217,7 +222,7 @@
                     <span class="mod-tag">TƏTBİQ / LAUNCHER</span>
                     <p class="mod-desc">Modları avtomatik quraşdıran, FPS optimizasiyası olan xüsusi hazırlanmış Minecraft proqramı.</p>
                 </div>
-                <a href="#" class="btn-download-mod">Launcher Yüklə (.exe)</a>
+                <a href="#" class="btn-download-mod" onclick="alert('Tezliklə yükləmə aktiv olacaq!')">Launcher Yüklə (.exe)</a>
             </div>
 
             <div class="mod-card">
@@ -226,7 +231,7 @@
                     <span class="mod-tag">MOD PAKETİ</span>
                     <p class="mod-desc">Zəif kompüterlər üçün daxili kodları yeniləyərək FPS göstəricisini maksimuma çıxaran paket.</p>
                 </div>
-                <a href="#" class="btn-download-mod">Modu Yüklə (.jar)</a>
+                <a href="#" class="btn-download-mod" onclick="alert('Tezliklə yükləmə aktiv olacaq!')">Modu Yüklə (.jar)</a>
             </div>
 
             <div class="mod-card">
@@ -235,7 +240,7 @@
                     <span class="mod-tag">SHADER / MOD</span>
                     <p class="mod-desc">Oyuna möhtəşəm işıqlandırmalar, HDR rənglər və real kölgələr əlavə edən qrafika yeniləməsi.</p>
                 </div>
-                <a href="#" class="btn-download-mod">Paketi Yüklə (.zip)</a>
+                <a href="#" class="btn-download-mod" onclick="alert('Tezliklə yükləmə aktiv olacaq!')">Paketi Yüklə (.zip)</a>
             </div>
 
         </div>
@@ -246,28 +251,10 @@
     </footer>
 
     <script>
-        // Proqram kimi yükləmə (PWA) funksiyası
-        let deferredPrompt;
-        const installBtn = document.getElementById('installBtn');
+        function triggerNativeInstall() {
+            alert("Saytı kompüterə yükləmək üçün Chrome brauzerinin sağ üst küncündəki (link yerinin sağındakı) 'Yüklə' (Install) ikonasına klikləyin!");
+        }
 
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            installBtn.style.display = 'block'; // Brauzer dəstəkləyirsə yüklə düyməsini göstər
-        });
-
-        installBtn.addEventListener('click', async () => {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                const { outcome } = await deferredPrompt.userChoice;
-                if (outcome === 'accepted') {
-                    installBtn.style.display = 'none';
-                }
-                deferredPrompt = null;
-            }
-        });
-
-        // Sürətli axtarış funksiyası
         function searchMods() {
             var input = document.getElementById('modSearch');
             var filter = input.value.toUpperCase();
@@ -278,7 +265,7 @@
                 if (h3) {
                     var txtValue = h3.textContent || h3.innerText;
                     if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        cards[i].style.display = "";
+                        cards[j].style.display = "";
                     } else {
                         cards[i].style.display = "none";
                     }
