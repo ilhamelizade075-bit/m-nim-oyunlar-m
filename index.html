@@ -44,50 +44,73 @@
             margin-left: 5px;
         }
 
-        /* Qısa Link Bölməsinin Dizaynı */
-        .share-container {
+        /* Yeni Realist Brauzer Ünvan Çubuğu Dizaynı */
+        .browser-mockup {
             background-color: #1c1d24;
-            max-width: 500px;
-            margin: 20px auto 0 auto;
-            padding: 12px 20px;
+            max-width: 650px;
+            margin: 25px auto 0 auto;
             border-radius: 8px;
-            border: 1px dashed #00af5c;
+            border: 1px solid #2f313d;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .browser-header {
+            background-color: #14151a;
+            padding: 8px 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid #2f313d;
+        }
+
+        /* Brauzerin sol tərəfindəki rəngli dairələr (Qırmızı, Sarı, Yaşıl) */
+        .browser-dot {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .dot-red { background-color: #ff5f56; }
+        .dot-yellow { background-color: #ffbd2e; }
+        .dot-green { background-color: #27c93f; }
+
+        .browser-address-bar {
+            background-color: #111216;
+            border: 1px solid #2f313d;
+            border-radius: 6px;
+            padding: 8px 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            flex-grow: 1;
+            margin-left: 10px;
         }
 
-        .share-text {
-            font-size: 0.9rem;
-            color: #a0a5b5;
-        }
-
-        .share-link {
+        .browser-address-text {
             color: #00af5c;
-            font-weight: bold;
-            text-decoration: none;
-            font-size: 1.05rem;
-            background-color: #111216;
-            padding: 4px 10px;
-            border-radius: 4px;
-            border: 1px solid #2f313d;
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            user-select: all;
         }
 
         .btn-copy {
-            background-color: #00af5c;
-            color: #000;
-            border: none;
-            padding: 6px 12px;
+            background-color: #24262f;
+            color: #a0a5b5;
+            border: 1px solid #3a3d4a;
+            padding: 4px 10px;
             border-radius: 4px;
             font-weight: bold;
             cursor: pointer;
-            font-size: 0.85rem;
-            transition: background 0.2s;
+            font-size: 0.8rem;
+            transition: all 0.2s;
         }
 
         .btn-copy:hover {
-            background-color: #fff;
+            background-color: #00af5c;
+            color: #000;
+            border-color: #00af5c;
         }
 
         .btn-install-app {
@@ -243,10 +266,19 @@
         <button id="installBtn" class="btn-install-app" onclick="triggerNativeInstall()">PROQRAMI YÜKLƏ</button>
     </header>
 
-    <div class="share-container">
-        <span class="share-text">🔗 Sürətli Keçid Linki:</span>
-        <a href="https://bit.ly/4f8wJzU" target="_blank" class="share-link" id="siteLink">bit.ly/4f8wJzU</a>
-        <button class="btn-copy" onclick="copyLinkText()">KOPYALA</button>
+    <!-- REAL BRAUZER STRUKTURLU LINK PANELI -->
+    <div class="browser-mockup">
+        <div class="browser-header">
+            <span class="browser-dot dot-red"></span>
+            <span class="browser-dot dot-yellow"></span>
+            <span class="browser-dot dot-green"></span>
+            
+            <div class="browser-address-bar">
+                <!-- Sənin tam olaraq istədiyin bit.ly linki tam formada bura yazıldı -->
+                <span class="browser-address-text" id="siteLink">https://bit.ly/4f8wJzU</span>
+                <button class="btn-copy" onclick="copyLinkText()">Kopyala</button>
+            </div>
+        </div>
     </div>
 
     <div class="hero-section">
@@ -297,11 +329,10 @@
     </footer>
 
     <script>
-        // Linki tək kliklə kopyalamaq üçün skript
         function copyLinkText() {
             const linkText = document.getElementById("siteLink").innerText;
             navigator.clipboard.writeText(linkText).then(() => {
-                alert("Müvəffəqiyyətlə kopyalandı: " + linkText);
+                alert("Link kopyalandı: " + linkText);
             });
         }
 
