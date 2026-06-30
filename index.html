@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>X-MODS | Minecraft Mod Launcher</title>
-    <meta name="theme-color" content="#00af5c">
+    <title>X-MODS Gaming Hub</title>
     <style>
         * {
             margin: 0;
@@ -14,349 +13,275 @@
         }
 
         body {
-            background-color: #111216;
-            color: #f1f2f6;
+            background-color: #0d0e12;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
             overflow-x: hidden;
         }
 
         header {
-            background: #18191e;
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid #00af5c;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            margin-bottom: 20px;
         }
 
         header h1 {
-            font-size: 1.8rem;
-            color: #00af5c;
-            font-weight: 800;
-            letter-spacing: 1px;
-        }
-
-        header h1 span {
-            color: #fff;
-            background-color: #00af5c;
-            padding: 2px 8px;
-            border-radius: 4px;
-            margin-left: 5px;
-        }
-
-        /* Yeni Realist Brauzer Ünvan Çubuğu Dizaynı */
-        .browser-mockup {
-            background-color: #1c1d24;
-            max-width: 650px;
-            margin: 25px auto 0 auto;
-            border-radius: 8px;
-            border: 1px solid #2f313d;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-            overflow: hidden;
-        }
-
-        .browser-header {
-            background-color: #14151a;
-            padding: 8px 15px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            border-bottom: 1px solid #2f313d;
-        }
-
-        /* Brauzerin sol tərəfindəki rəngli dairələr (Qırmızı, Sarı, Yaşıl) */
-        .browser-dot {
-            width: 11px;
-            height: 11px;
-            border-radius: 50%;
-            display: inline-block;
-        }
-        .dot-red { background-color: #ff5f56; }
-        .dot-yellow { background-color: #ffbd2e; }
-        .dot-green { background-color: #27c93f; }
-
-        .browser-address-bar {
-            background-color: #111216;
-            border: 1px solid #2f313d;
-            border-radius: 6px;
-            padding: 8px 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-grow: 1;
-            margin-left: 10px;
-        }
-
-        .browser-address-text {
-            color: #00af5c;
-            font-size: 0.95rem;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            user-select: all;
-        }
-
-        .btn-copy {
-            background-color: #24262f;
-            color: #a0a5b5;
-            border: 1px solid #3a3d4a;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 0.8rem;
-            transition: all 0.2s;
-        }
-
-        .btn-copy:hover {
-            background-color: #00af5c;
-            color: #000;
-            border-color: #00af5c;
-        }
-
-        .btn-install-app {
-            background: linear-gradient(135deg, #00af5c 0%, #007a3d 100%);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 175, 92, 0.3);
-            transition: transform 0.2s;
-        }
-
-        .btn-install-app:hover {
-            transform: scale(1.05);
-        }
-
-        .hero-section {
-            text-align: center;
-            padding: 40px 20px 60px 20px;
-            background: linear-gradient(180deg, #18191e 0%, #111216 100%);
-        }
-
-        .hero-section h2 {
+            color: #00ff88;
             font-size: 2.5rem;
-            margin-bottom: 15px;
-            color: #fff;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.6);
+            letter-spacing: 2px;
         }
 
-        .hero-section p {
+        .game-description {
             color: #a0a5b5;
-            font-size: 1.1rem;
             max-width: 600px;
-            margin: 0 auto 25px auto;
-        }
-
-        .search-container {
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 14px 20px;
-            background-color: #1c1d24;
-            border: 2px solid #2f313d;
-            border-radius: 8px;
-            color: #fff;
-            font-size: 1rem;
-            outline: none;
-            transition: border-color 0.3s;
-        }
-
-        .search-input:focus {
-            border-color: #00af5c;
-        }
-
-        .main-content {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        .section-title {
-            font-size: 1.4rem;
-            color: #00af5c;
-            margin-bottom: 20px;
-            font-weight: bold;
-            letter-spacing: 0.5px;
-        }
-
-        .mods-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-        }
-
-        .mod-card {
-            background-color: #18191e;
-            border: 1px solid #2f313d;
-            border-radius: 12px;
-            padding: 25px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: transform 0.2s, border-color 0.2s;
-        }
-
-        .mod-card:hover {
-            transform: translateY(-4px);
-            border-color: #00af5c;
-        }
-
-        .mod-info h3 {
-            font-size: 1.3rem;
-            color: #fff;
-            margin-bottom: 8px;
-        }
-
-        .mod-tag {
-            display: inline-block;
-            background-color: #24262f;
-            color: #00af5c;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            margin-bottom: 12px;
-        }
-
-        .mod-desc {
-            color: #a0a5b5;
+            margin: 10px auto 25px auto;
             font-size: 0.95rem;
             line-height: 1.5;
+            background: #14161d;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #00ff88;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .scoreboard {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
             margin-bottom: 20px;
-        }
-
-        .btn-download-mod {
-            background-color: #24262f;
-            color: #fff;
-            text-align: center;
-            text-decoration: none;
-            padding: 10px;
-            border-radius: 6px;
+            font-size: 1.3rem;
             font-weight: bold;
-            font-size: 0.95rem;
-            transition: background 0.2s, color 0.2s;
-            border: 1px solid #3a3d4a;
         }
 
-        .btn-download-mod:hover {
-            background-color: #00af5c;
-            color: #000;
-            border-color: #00af5c;
+        .score-x { color: #00d2ff; text-shadow: 0 0 15px rgba(0,210,255,0.5); }
+        .score-o { color: #ff3838; text-shadow: 0 0 15px rgba(255,56,56,0.5); }
+
+        #status-text {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #ffb800;
+            font-weight: 600;
+            transition: color 0.3s ease;
         }
 
-        footer {
-            text-align: center;
-            padding: 30px;
-            background-color: #18191e;
-            color: #626575;
-            margin-top: 60px;
-            font-size: 0.9rem;
-            border-top: 1px solid #2f313d;
+        .arena-grid {
+            display: grid;
+            grid-template-columns: repeat(10, 45px);
+            grid-template-rows: repeat(10, 45px);
+            gap: 6px;
+            justify-content: center;
+            margin: 0 auto 25px auto;
+            will-change: transform;
+        }
+
+        .arena-cell {
+            background-color: #1a1c23;
+            border: 1px solid #2d313f;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: background-color 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+                        border-color 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+                        box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+                        transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+            will-change: background-color, transform, box-shadow;
+        }
+
+        .arena-cell:hover {
+            background-color: #252833;
+            transform: scale(1.08);
+            z-index: 2;
+        }
+
+        .arena-cell.player-x {
+            background-color: rgba(0, 210, 255, 0.25);
+            border-color: #00d2ff;
+            color: #00d2ff;
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.6), inset 0 0 10px rgba(0, 210, 255, 0.4);
+            animation: pulseBlue 0.4s ease-out;
+        }
+
+        .arena-cell.player-o {
+            background-color: rgba(255, 56, 56, 0.25);
+            border-color: #ff3838;
+            color: #ff3838;
+            box-shadow: 0 0 15px rgba(255, 56, 56, 0.6), inset 0 0 10px rgba(255, 56, 56, 0.4);
+            animation: pulseRed 0.4s ease-out;
+        }
+
+        @keyframes pulseBlue {
+            0% { transform: scale(0.8); background-color: rgba(0, 210, 255, 0.6); }
+            100% { transform: scale(1); background-color: rgba(0, 210, 255, 0.25); }
+        }
+
+        @keyframes pulseRed {
+            0% { transform: scale(0.8); background-color: rgba(255, 56, 56, 0.6); }
+            100% { transform: scale(1); background-color: rgba(255, 56, 56, 0.25); }
+        }
+
+        .reset-btn {
+            background: linear-gradient(135deg, #00ff88 0%, #00a354 100%);
+            color: #0d0e12;
+            border: none;
+            padding: 14px 35px;
+            font-size: 1.05rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0, 255, 136, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .reset-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0, 255, 136, 0.5);
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>X-MODS<span>PRO</span></h1>
-        <button id="installBtn" class="btn-install-app" onclick="triggerNativeInstall()">PROQRAMI YÜKLƏ</button>
+        <h1>KİBER ARENA: FƏTH</h1>
     </header>
 
-    <!-- REAL BRAUZER STRUKTURLU LINK PANELI -->
-    <div class="browser-mockup">
-        <div class="browser-header">
-            <span class="browser-dot dot-red"></span>
-            <span class="browser-dot dot-yellow"></span>
-            <span class="browser-dot dot-green"></span>
-            
-            <div class="browser-address-bar">
-                <!-- Sənin tam olaraq istədiyin bit.ly linki tam formada bura yazıldı -->
-                <span class="browser-address-text" id="siteLink">https://bit.ly/4f8wJzU</span>
-                <button class="btn-copy" onclick="copyLinkText()">Kopyala</button>
-            </div>
-        </div>
+    <div class="game-description">
+        <strong>💡 Qaydalar:</strong> Boş xanalara klikləyərək ərazini fəth et. Əgər qoyduğun xananın qonşuluğunda rəqibin xanası varsa, onun ərazisini **oğurlayıb** öz rənginə çevirəcəksən! Xəritə dolanda ən çox xanası olan qalib gəlir!
     </div>
 
-    <div class="hero-section">
-        <h2>Modları Tap və Bir Kliklə Yüklə</h2>
-        <p>Minecraft dünyasını dəyişdirəcək ən son mod paketləri, optimizasiya alətləri və tətbiqlər mərkəzi.</p>
-        <div class="search-container">
-            <input type="text" id="modSearch" class="search-input" placeholder="Mod və ya paket axtar..." onkeyup="searchMods()">
-        </div>
+    <div class="scoreboard">
+        <div class="score-x">Mavi (X): <span id="scoreX">1</span></div>
+        <div class="score-o">Qırmızı (O): <span id="scoreO">1</span></div>
     </div>
 
-    <div class="main-content">
-        <div class="section-title">⚡ POPULYAR LAYİHƏLƏR</div>
-        
-        <div class="mods-grid">
-            
-            <div class="mod-card">
-                <div class="mod-info">
-                    <h3>Fabric Installer</h3>
-                    <span class="mod-tag">TƏTBİQ / LAUNCHER</span>
-                    <p class="mod-desc">Müasir Minecraft modlarını rahat və sürətli şəkildə quraşdırmaq üçün rəsmi mod yükləyicisi.</p>
-                </div>
-                <a href="https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.0.1/fabric-installer-1.0.1.exe" class="btn-download-mod">Launcher Yüklə (.exe)</a>
-            </div>
+    <div id="status-text">Növbə: Mavi (X) Oyunçusunda</div>
 
-            <div class="mod-card">
-                <div class="mod-info">
-                    <h3>OptiFine HD</h3>
-                    <span class="mod-tag">MOD PAKETİ</span>
-                    <p class="mod-desc">Oyundakı bütün qrafik kodları yeniləyərək FPS göstəricisini maksimuma çıxaran rəsmi paket.</p>
-                </div>
-                <a href="https://optifine.net/downloads" target="_blank" class="btn-download-mod">Modu Yüklə (.jar)</a>
-            </div>
+    <div class="arena-grid" id="arenaGrid"></div>
 
-            <div class="mod-card">
-                <div class="mod-info">
-                    <h3>Iris Shaders</h3>
-                    <span class="mod-tag">SHADER / MOD</span>
-                    <p class="mod-desc">Oyuna möhtəşəm işıqlandırmalar, HDR rənglər və real kölgələr əlavə edən qrafika yeniləməsi.</p>
-                </div>
-                <a href="https://www.curseforge.com/minecraft/mc-mods/irisshaders" target="_blank" class="btn-download-mod">Paketi Yüklə (.zip)</a>
-            </div>
-
-        </div>
-    </div>
-
-    <footer>
-        <p>&copy; 2026 X-MODS. Bütün yükləmələr rəsmi və aktivdir.</p>
-    </footer>
+    <button class="reset-btn" onclick="initGame()">Arenanı Yenilə</button>
 
     <script>
-        function copyLinkText() {
-            const linkText = document.getElementById("siteLink").innerText;
-            navigator.clipboard.writeText(linkText).then(() => {
-                alert("Link kopyalandı: " + linkText);
+        const GRID_SIZE = 10;
+        let board = [];
+        let currentPlayer = 'X';
+        let gameActive = true;
+
+        function initGame() {
+            const gridElement = document.getElementById("arenaGrid");
+            gridElement.innerHTML = "";
+            board = Array(GRID_SIZE).fill(null).map(() => Array(GRID_SIZE).fill(""));
+            gameActive = true;
+            currentPlayer = 'X';
+            document.getElementById("status-text").innerText = "Növbə: Mavi (X) Oyunçusunda";
+            document.getElementById("status-text").style.color = "#00d2ff";
+
+            board[0][0] = 'X';
+            board[GRID_SIZE-1][GRID_SIZE-1] = 'O';
+
+            for (let r = 0; r < GRID_SIZE; r++) {
+                for (let c = 0; c < GRID_SIZE; c++) {
+                    const cell = document.createElement("div");
+                    cell.classList.add("arena-cell");
+                    cell.dataset.row = r;
+                    cell.dataset.col = c;
+                    
+                    if (r === 0 && c === 0) cell.classList.add("player-x");
+                    if (r === GRID_SIZE-1 && c === GRID_SIZE-1) cell.classList.add("player-o");
+                    
+                    cell.addEventListener("click", () => handleCellClick(r, c, cell));
+                    gridElement.appendChild(cell);
+                }
+            }
+            updateScores();
+        }
+
+        function handleCellClick(r, c, cellElement) {
+            if (board[r][c] !== "" || !gameActive) return;
+
+            board[r][c] = currentPlayer;
+            cellElement.classList.add(currentPlayer === 'X' ? 'player-x' : 'player-o');
+
+            captureNeighbors(r, c);
+
+            currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+            const status = document.getElementById("status-text");
+            if (currentPlayer === 'X') {
+                status.innerText = "Növbə: Mavi (X) Oyunçusunda";
+                status.style.color = "#00d2ff";
+            } else {
+                status.innerText = "Növbə: Qırmızı (O) Oyunçusunda";
+                status.style.color = "#ff3838";
+            }
+
+            updateScores();
+            checkGameOver();
+        }
+
+        function captureNeighbors(r, c) {
+            const directions = [[-1, 0], [1, 0], [0, -1], [0, 1]];
+
+            directions.forEach(([dr, dc]) => {
+                const nr = r + dr;
+                const nc = c + dc;
+
+                if (nr >= 0 && nr < GRID_SIZE && nc >= 0 && nc < GRID_SIZE) {
+                    const target = board[nr][nc];
+                    if (target !== "" && target !== currentPlayer) {
+                        board[nr][nc] = currentPlayer;
+                        setTimeout(() => {
+                            const targetCell = document.querySelector(`[data-row='${nr}'][data-col='${nc}']`);
+                            if(targetCell) {
+                                targetCell.className = "arena-cell " + (currentPlayer === 'X' ? 'player-x' : 'player-o');
+                            }
+                        }, 50);
+                    }
+                }
             });
         }
 
-        function triggerNativeInstall() {
-            alert("Saytın özünü kompüterə ayrıca bir proqram kimi yükləmək üçün Google Chrome brauzerinin tam sağ üst küncündəki monitor və ox işarəsinə klikləyin!");
+        function updateScores() {
+            let countX = 0; let countO = 0;
+            for (let r = 0; r < GRID_SIZE; r++) {
+                for (let c = 0; c < GRID_SIZE; c++) {
+                    if (board[r][c] === 'X') countX++;
+                    if (board[r][c] === 'O') countO++;
+                }
+            }
+            document.getElementById("scoreX").innerText = countX;
+            document.getElementById("scoreO").innerText = countO;
         }
 
-        function searchMods() {
-            var input = document.getElementById('modSearch');
-            var filter = input.value.toUpperCase();
-            var cards = document.getElementsByClassName('mod-card');
+        function checkGameOver() {
+            let hasEmpty = false;
+            for (let r = 0; r < GRID_SIZE; r++) {
+                for (let c = 0; c < GRID_SIZE; c++) {
+                    if (board[r][c] === "") hasEmpty = true;
+                }
+            }
 
-            for (var i = 0; i < cards.length; i++) {
-                var h3 = cards[i].getElementsByTagName('h3')[0];
-                if (h3) {
-                    var txtValue = h3.textContent || h3.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        cards[i].style.display = "";
-                    } else {
-                        cards[i].style.display = "none";
-                    }
+            if (!hasEmpty) {
+                gameActive = false;
+                const scoreX = parseInt(document.getElementById("scoreX").innerText);
+                const scoreO = parseInt(document.getElementById("scoreO").innerText);
+                const status = document.getElementById("status-text");
+                
+                if (scoreX > scoreO) {
+                    status.innerText = "🎉 OYUN BİTDİ: MAVİ (X) APARDI!";
+                    status.style.color = "#00d2ff";
+                } else if (scoreO > scoreX) {
+                    status.innerText = "🎉 OYUN BİTDİ: QIRMIZI (O) APARDI!";
+                    status.style.color = "#ff3838";
+                } else {
+                    status.innerText = "🤝 BƏRABƏRƏ BİTDİ!";
+                    status.style.color = "#ffb800";
                 }
             }
         }
+
+        initGame();
     </script>
 </body>
 </html>
