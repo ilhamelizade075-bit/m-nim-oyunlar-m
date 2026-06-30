@@ -33,7 +33,7 @@
 
         .game-description {
             color: #a0a5b5;
-            max-width: 600px;
+            max-width: 500px;
             margin: 10px auto 25px auto;
             font-size: 0.95rem;
             line-height: 1.5;
@@ -64,11 +64,12 @@
             transition: color 0.3s ease;
         }
 
+        /* 3x3 Ölçülü Yeni Arena */
         .arena-grid {
             display: grid;
-            grid-template-columns: repeat(10, 45px);
-            grid-template-rows: repeat(10, 45px);
-            gap: 6px;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 12px;
             justify-content: center;
             margin: 0 auto 25px auto;
             will-change: transform;
@@ -76,24 +77,26 @@
 
         .arena-cell {
             background-color: #1a1c23;
-            border: 1px solid #2d313f;
-            border-radius: 8px;
+            border: 2px solid #2d313f;
+            border-radius: 12px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
-            font-size: 1.1rem;
+            font-weight: 800;
+            font-size: 2.5rem;
+            color: transparent;
             transition: background-color 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
                         border-color 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
                         box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1),
-                        transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+                        transform 0.2s cubic-bezier(0.25, 1, 0.5, 1),
+                        color 0.3s ease;
             will-change: background-color, transform, box-shadow;
         }
 
         .arena-cell:hover {
             background-color: #252833;
-            transform: scale(1.08);
+            transform: scale(1.06);
             z-index: 2;
         }
 
@@ -101,7 +104,7 @@
             background-color: rgba(0, 210, 255, 0.25);
             border-color: #00d2ff;
             color: #00d2ff;
-            box-shadow: 0 0 15px rgba(0, 210, 255, 0.6), inset 0 0 10px rgba(0, 210, 255, 0.4);
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.6), inset 0 0 15px rgba(0, 210, 255, 0.4);
             animation: pulseBlue 0.4s ease-out;
         }
 
@@ -109,7 +112,7 @@
             background-color: rgba(255, 56, 56, 0.25);
             border-color: #ff3838;
             color: #ff3838;
-            box-shadow: 0 0 15px rgba(255, 56, 56, 0.6), inset 0 0 10px rgba(255, 56, 56, 0.4);
+            box-shadow: 0 0 20px rgba(255, 56, 56, 0.6), inset 0 0 15px rgba(255, 56, 56, 0.4);
             animation: pulseRed 0.4s ease-out;
         }
 
@@ -149,7 +152,7 @@
     </header>
 
     <div class="game-description">
-        <strong>💡 Qaydalar:</strong> Boş xanalara klikləyərək ərazini fəth et. Əgər qoyduğun xananın qonşuluğunda rəqibin xanası varsa, onun ərazisini **oğurlayıb** öz rənginə çevirəcəksən! Xəritə dolanda ən çox xanası olan qalib gəlir!
+        <strong>💡 Qaydalar:</strong> Boş xanalara klikləyərək ərazini fəth et və üzərində <strong>X-O</strong> yazılsın. Qonşu xanada rəqib varsa, onun ərazisini fəth edib öz hərfinə çevirəcəksən!
     </div>
 
     <div class="scoreboard">
@@ -164,7 +167,7 @@
     <button class="reset-btn" onclick="initGame()">Arenanı Yenilə</button>
 
     <script>
-        const GRID_SIZE = 10;
+        const GRID_SIZE = 3;
         let board = [];
         let currentPlayer = 'X';
         let gameActive = true;
@@ -188,8 +191,14 @@
                     cell.dataset.row = r;
                     cell.dataset.col = c;
                     
-                    if (r === 0 && c === 0) cell.classList.add("player-x");
-                    if (r === GRID_SIZE-1 && c === GRID_SIZE-1) cell.classList.add("player-o");
+                    if (r === 0 && c === 0) {
+                        cell.classList.add("player-x");
+                        cell.innerText = "X";
+                    }
+                    if (r === GRID_SIZE-1 && c === GRID_SIZE-1) {
+                        cell.classList.add("player-o");
+                        cell.innerText = "O";
+                    }
                     
                     cell.addEventListener("click", () => handleCellClick(r, c, cell));
                     gridElement.appendChild(cell);
@@ -202,6 +211,7 @@
             if (board[r][c] !== "" || !gameActive) return;
 
             board[r][c] = currentPlayer;
+            cellElement.innerText = currentPlayer;
             cellElement.classList.add(currentPlayer === 'X' ? 'player-x' : 'player-o');
 
             captureNeighbors(r, c);
@@ -235,6 +245,7 @@
                             const targetCell = document.querySelector(`[data-row='${nr}'][data-col='${nc}']`);
                             if(targetCell) {
                                 targetCell.className = "arena-cell " + (currentPlayer === 'X' ? 'player-x' : 'player-o');
+                                targetCell.innerText = currentPlayer;
                             }
                         }, 50);
                     }
