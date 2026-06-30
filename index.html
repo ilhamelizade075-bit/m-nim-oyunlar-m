@@ -41,105 +41,19 @@
             font-size: 1.2rem;
         }
 
-        .search-container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 0 15px;
-        }
-
-        .search-box {
-            width: 100%;
-            padding: 12px 20px;
-            background-color: #161b26;
-            border: 1px solid #2c354a;
-            border-radius: 6px;
-            color: #fff;
-            font-size: 1rem;
-            outline: none;
-        }
-
-        .search-box:focus {
-            border-color: #ff2e93;
-        }
-
         .main-container {
-            max-width: 800px;
-            margin: 0 auto;
+            max-width: 1000px;
+            margin: 25px auto;
             padding: 0 15px 50px 15px;
         }
 
-        .league-block {
+        .widget-wrapper {
             background-color: #161b26;
             border-radius: 8px;
-            margin-bottom: 20px;
             overflow: hidden;
             border: 1px solid #2c354a;
-        }
-
-        .league-header {
-            background-color: #1f2637;
-            padding: 12px 15px;
-            font-weight: bold;
-            font-size: 0.95rem;
-            color: #00ffcc;
-            border-bottom: 1px solid #2c354a;
-        }
-
-        .match-card {
-            display: flex;
-            align-items: center;
-            padding: 15px;
-            border-bottom: 1px solid #2c354a;
-            transition: background 0.2s;
-        }
-
-        .match-card:last-child {
-            border-bottom: none;
-        }
-
-        .match-card:hover {
-            background-color: #1f2637;
-        }
-
-        .match-status {
-            width: 60px;
-            font-size: 0.85rem;
-            font-weight: bold;
-            color: #ff2e93;
-            text-align: center;
-        }
-
-        .match-status.finished {
-            color: #8a96a3;
-        }
-
-        .teams-area {
-            flex: 1;
-            padding-left: 15px;
-        }
-
-        .team-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 4px 0;
-            font-size: 1.05rem;
-        }
-
-        .team-name {
-            color: #fff;
-        }
-
-        .team-score {
-            font-weight: bold;
-            font-size: 1.1rem;
-            color: #fff;
-            width: 30px;
-            text-align: center;
-        }
-
-        .match-card:hover .team-name {
-            color: #00ffcc;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            min-height: 600px;
         }
 
         footer {
@@ -158,113 +72,20 @@
         <h1>X-SCORE<span>LIVE</span></h1>
     </header>
 
-    <div class="search-container">
-        <input type="text" id="teamSearch" class="search-box" placeholder="Komanda adı axtar..." onkeyup="searchTeams()">
-    </div>
-
     <div class="main-container">
-
-        <div class="league-block">
-            <div class="league-header">🏆 ÇEMPİONLAR LİQASI</div>
-            
-            <div class="match-card">
-                <div class="match-status">72'</div>
-                <div class="teams-area">
-                    <div class="team-row">
-                        <span class="team-name">Real Madrid</span>
-                        <span class="team-score">2</span>
-                    </div>
-                    <div class="team-row">
-                        <span class="team-name">Manchester City</span>
-                        <span class="team-score">1</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="match-card">
-                <div class="match-status finished">FT</div>
-                <div class="teams-area">
-                    <div class="team-row">
-                        <span class="team-name">Barcelona</span>
-                        <span class="team-score">3</span>
-                    </div>
-                    <div class="team-row">
-                        <span class="team-name">Bayern Munich</span>
-                        <span class="team-score">0</span>
-                    </div>
-                </div>
-            </div>
+        <div class="widget-wrapper">
+            <!-- Dünyadakı bütün canlı oyunları avtomatik çəkən rəsmi təhlükəsiz widget -->
+            <iframe src="https://www.scoreaxis.com/widget/live-scores?autoHeight=1&bodyBackground=%23161b26&textColor=%23ffffff&font=Arial" 
+                    style="width: 100%; height: 800px; border: none; overflow: hidden;" 
+                    scrolling="yes" 
+                    allowtransparency="true">
+            </iframe>
         </div>
-
-        <div class="league-block">
-            <div class="league-header">🏴󠁧󠁢󠁥󠁮󠁧󠁿 İNGİLTƏRƏ PREMYER LİQASI</div>
-            
-            <div class="match-card">
-                <div class="match-status">15'</div>
-                <div class="teams-area">
-                    <div class="team-row">
-                        <span class="team-name">Arsenal</span>
-                        <span class="team-score">0</span>
-                    </div>
-                    <div class="team-row">
-                        <span class="team-name">Chelsea</span>
-                        <span class="team-score">0</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="match-card">
-                <div class="match-status finished">FT</div>
-                <div class="teams-area">
-                    <div class="team-row">
-                        <span class="team-name">Liverpool</span>
-                        <span class="team-score">4</span>
-                    </div>
-                    <div class="team-row">
-                        <span class="team-name">Manchester United</span>
-                        <span class="team-score">2</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
 
     <footer>
-        <p>&copy; 2026 X-SCORE. Bütün idman nəticələri anlıq burada!</p>
+        <p>&copy; 2026 X-SCORE. Bütün dünyadakı oyunlar tam doğru və anlıq olaraq yenilənir!</p>
     </footer>
 
-    <script>
-        function searchTeams() {
-            var input = document.getElementById('teamSearch');
-            var filter = input.value.toUpperCase();
-            var cards = document.getElementsByClassName('match-card');
-            var blocks = document.getElementsByClassName('league-block');
-
-            for (var i = 0; i < blocks.length; i++) {
-                var currentCards = blocks[i].getElementsByClassName('match-card');
-                var hasMatch = false;
-
-                for (var j = 0; j < currentCards.length; j++) {
-                    var names = currentCards[j].getElementsByClassName('team-name');
-                    var team1 = names[0].textContent || names[0].innerText;
-                    var team2 = names[1].textContent || names[1].innerText;
-
-                    if (team1.toUpperCase().indexOf(filter) > -1 || team2.toUpperCase().indexOf(filter) > -1) {
-                        currentCards[j].style.display = "";
-                        hasMatch = true;
-                    } else {
-                        currentCards[j].style.display = "none";
-                    }
-                }
-
-                if (hasMatch) {
-                    blocks[i].style.display = "";
-                } else {
-                    blocks[i].style.display = "none";
-                }
-            }
-        }
-    </script>
 </body>
 </html>
