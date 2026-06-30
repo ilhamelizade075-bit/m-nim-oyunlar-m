@@ -44,6 +44,52 @@
             margin-left: 5px;
         }
 
+        /* Qısa Link Bölməsinin Dizaynı */
+        .share-container {
+            background-color: #1c1d24;
+            max-width: 500px;
+            margin: 20px auto 0 auto;
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: 1px dashed #00af5c;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .share-text {
+            font-size: 0.9rem;
+            color: #a0a5b5;
+        }
+
+        .share-link {
+            color: #00af5c;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 1.05rem;
+            background-color: #111216;
+            padding: 4px 10px;
+            border-radius: 4px;
+            border: 1px solid #2f313d;
+        }
+
+        .btn-copy {
+            background-color: #00af5c;
+            color: #000;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: background 0.2s;
+        }
+
+        .btn-copy:hover {
+            background-color: #fff;
+        }
+
         .btn-install-app {
             background: linear-gradient(135deg, #00af5c 0%, #007a3d 100%);
             color: white;
@@ -62,7 +108,7 @@
 
         .hero-section {
             text-align: center;
-            padding: 60px 20px;
+            padding: 40px 20px 60px 20px;
             background: linear-gradient(180deg, #18191e 0%, #111216 100%);
         }
 
@@ -197,6 +243,12 @@
         <button id="installBtn" class="btn-install-app" onclick="triggerNativeInstall()">PROQRAMI YÜKLƏ</button>
     </header>
 
+    <div class="share-container">
+        <span class="share-text">🔗 Sürətli Keçid Linki:</span>
+        <a href="https://bit.ly/4f8wJzU" target="_blank" class="share-link" id="siteLink">bit.ly/4f8wJzU</a>
+        <button class="btn-copy" onclick="copyLinkText()">KOPYALA</button>
+    </div>
+
     <div class="hero-section">
         <h2>Modları Tap və Bir Kliklə Yüklə</h2>
         <p>Minecraft dünyasını dəyişdirəcək ən son mod paketləri, optimizasiya alətləri və tətbiqlər mərkəzi.</p>
@@ -245,8 +297,16 @@
     </footer>
 
     <script>
+        // Linki tək kliklə kopyalamaq üçün skript
+        function copyLinkText() {
+            const linkText = document.getElementById("siteLink").innerText;
+            navigator.clipboard.writeText(linkText).then(() => {
+                alert("Müvəffəqiyyətlə kopyalandı: " + linkText);
+            });
+        }
+
         function triggerNativeInstall() {
-            alert("Saytın özünü kompüterə ayrıca bir proqram kimi yükləmək üçün Google Chrome brauzerinin tam sağ üst küncündəki (link yerinin sağında yerləşən) monitor və ox işarəsinə klikləyin!");
+            alert("Saytın özünü kompüterə ayrıca bir proqram kimi yükləmək üçün Google Chrome brauzerinin tam sağ üst küncündəki monitor və ox işarəsinə klikləyin!");
         }
 
         function searchMods() {
